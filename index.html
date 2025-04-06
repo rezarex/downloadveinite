@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Downloads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            flex-direction: column;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s ease;
+            width: 80%;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        
+        .android-btn {
+            background-color: #3ddc84;
+        }
+        
+        .ios-btn {
+            background-color: #007aff;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .close-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Download Veinite App</h1>
+        
+        <a href="app-release.apk" class="download-btn android-btn" download>
+            <span class="icon">📱</span> Veinite for Android (APK)
+        </a>
+        
+        <div class="download-btn ios-btn" id="ios-btn">
+            <span class="icon"></span> Veinite for iOS (IPA)
+        </div>
+        
+        <p style="margin-top: 30px; color: #666;">
+            Version 1.0.0 | File sizes: <br> Android (50MB), <br> iOS (Unavailable)
+        </p>
+    </div>
+
+    <!-- Popup for iOS -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h3>iOS App Not Available</h3>
+            <p>The iOS version is currently not available for download.</p>
+            <button class="close-btn" id="close-btn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('ios-btn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'flex';
+        });
+
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        // Close popup when clicking outside the content
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
